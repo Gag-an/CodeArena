@@ -1,0 +1,139 @@
+.tip-widget {
+  padding: 1.5rem;
+  border-radius: 12px;
+  width: 300px;
+  transition: all 0.3s ease;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.tip-widget:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(248, 193, 40, 0.1);
+  border-color: rgba(248, 193, 40, 0.3);
+}
+
+.tip-widget::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, transparent 50%, rgba(248, 193, 40, 0.03) 100%);
+  pointer-events: none;
+}
+
+.tip-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.tip-emoji {
+  font-size: 1.5rem;
+  filter: drop-shadow(0 0 5px rgba(248, 193, 40, 0.4));
+}
+
+.tip-title {
+  font-size: 1.1rem;
+  color: #fff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.tip-badges {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tip-category {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-secondary);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tip-difficulty {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.tip-difficulty.easy { color: #00b8a3; background: rgba(0, 184, 163, 0.1); border: 1px solid rgba(0, 184, 163, 0.3); }
+.tip-difficulty.medium { color: #ffa116; background: rgba(255, 161, 22, 0.1); border: 1px solid rgba(255, 161, 22, 0.3); }
+.tip-difficulty.hard { color: #ff4655; background: rgba(255, 70, 85, 0.1); border: 1px solid rgba(255, 70, 85, 0.3); }
+
+.tip-text {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+}
+
+.tip-practice {
+  font-size: 0.85rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.6rem;
+  border-radius: 6px;
+  border-left: 3px solid var(--accent-yellow);
+}
+
+.tip-practice strong {
+  color: var(--accent-yellow);
+}
+
+/* Animations */
+.fade-in {
+  animation: fadeInTip 0.5s ease forwards;
+}
+
+@keyframes fadeInTip {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Skeleton Loading */
+.skeleton .skeleton-header {
+  width: 70%;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton .skeleton-badges {
+  width: 40%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton .skeleton-body {
+  width: 100%;
+  height: 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton .skeleton-body.short {
+  width: 80%;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}

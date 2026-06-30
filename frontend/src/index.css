@@ -1,0 +1,92 @@
+:root {
+  /* Color Palette */
+  --bg-color: #101114;
+  --surface-color: #1a1c22;
+  --surface-color-light: #252830;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a5b5;
+  
+  /* Accents */
+  --accent-yellow: #f8c128;
+  --accent-yellow-hover: #e0a51c;
+  --accent-pastel-blue: #a3c4f3;
+  --accent-pastel-pink: #f1c0e8;
+  --accent-pastel-green: #b9fbc0;
+  
+  /* Typography */
+  --font-main: 'Outfit', sans-serif;
+  --font-code: 'JetBrains Mono', monospace;
+  
+  /* UI Elements */
+  --border-radius: 6px;
+  --glass-bg: rgba(26, 28, 34, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-blur: blur(12px);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  
+  /* Isometric-like Grid Pattern */
+  background-image: 
+    linear-gradient(30deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(-30deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 80px 46px;
+  background-position: center top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-main);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+code, pre, .font-code {
+  font-family: var(--font-code);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utilities */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius);
+}
+
+.text-yellow {
+  color: var(--accent-yellow);
+}
+
+.text-pastel {
+  color: var(--accent-pastel-blue);
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse-glow {
+  0% { box-shadow: 0 0 5px var(--accent-yellow); }
+  50% { box-shadow: 0 0 20px var(--accent-yellow); }
+  100% { box-shadow: 0 0 5px var(--accent-yellow); }
+}

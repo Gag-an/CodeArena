@@ -1,0 +1,7 @@
+.sprite-avatar-container {
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  /* To ensure it doesn't get squished, though width/height are controlled by parent usually */
+}

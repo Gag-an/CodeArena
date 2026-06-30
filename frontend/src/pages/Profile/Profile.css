@@ -1,0 +1,418 @@
+.profile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 1.5rem;
+  min-height: 90vh;
+}
+
+@media (max-width: 900px) {
+  .profile-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-container .glass-panel {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.profile-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.avatar-wrapper {
+  margin-bottom: 1rem;
+}
+
+.avatar-image {
+  width: 80px;
+  height: 80px;
+  background: #2a2a2a;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.real-name {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+  color: #fff;
+}
+
+.username {
+  color: #888;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.rank-info {
+  font-size: 0.9rem;
+  color: #aaa;
+  margin-bottom: 1rem;
+}
+
+.rank-number {
+  color: #fff;
+  font-weight: bold;
+}
+
+.edit-profile-btn {
+  width: 100%;
+  background: #2cb55d;
+  color: #000;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  border-top: 1px solid #333;
+  padding-top: 1rem;
+}
+
+.link-item {
+  color: #bbb;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-main {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .profile-top-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.solved-panel {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.donut-chart-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.donut-chart {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.donut-bg {
+  fill: none;
+  stroke: #333;
+  stroke-width: 4;
+}
+
+.donut-segment {
+  fill: none;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.donut-segment.easy { stroke: #00b8a3; }
+.donut-segment.med { stroke: #ffc01e; }
+.donut-segment.hard { stroke: #ef4743; }
+
+.donut-inner-text {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.solved-big {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.total-small {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.solved-label {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-top: 0.2rem;
+}
+
+.difficulty-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  flex: 1;
+}
+
+.diff-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #2a2a2a;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.diff-stat.easy .diff-label { color: #00b8a3; }
+.diff-stat.med .diff-label { color: #ffc01e; }
+.diff-stat.hard .diff-label { color: #ef4743; }
+
+.diff-count {
+  color: #fff;
+  font-weight: bold;
+}
+.diff-total {
+  color: #888;
+  font-weight: normal;
+}
+
+.badges-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #aaa;
+  margin-bottom: 1.5rem;
+}
+.badge-count {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.earned-badges-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.earned-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: #2a2a2a;
+  padding: 0.8rem;
+  border-radius: 8px;
+  width: 100px;
+  text-align: center;
+}
+
+.badge-icon {
+  font-size: 2rem;
+}
+
+.badge-name {
+  color: #ccc;
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+.heatmap-header strong {
+  color: #fff;
+}
+
+.heatmap-grid-container {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 0.5rem;
+}
+
+.heatmap-week {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background-color: #2a2a2a;
+}
+
+.heatmap-cell.level-1 { background-color: #0e4429; }
+.heatmap-cell.level-2 { background-color: #006d32; }
+.heatmap-cell.level-3 { background-color: #26a641; }
+.heatmap-cell.level-4 { background-color: #39d353; }
+
+.heatmap-months {
+  display: flex;
+  justify-content: space-between;
+  color: #888;
+  font-size: 0.8rem;
+  margin-top: 0.5rem;
+  padding: 0 1rem;
+}
+
+.recent-tabs {
+  display: flex;
+  gap: 1.5rem;
+  border-bottom: 1px solid #333;
+  margin-bottom: 1rem;
+}
+
+.recent-tabs .tab {
+  background: none;
+  border: none;
+  color: #888;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+}
+
+.recent-tabs .tab.active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.recent-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.recent-list li:last-child {
+  border-bottom: none;
+}
+
+.problem-name {
+  color: #ccc;
+  font-size: 0.95rem;
+}
+
+.problem-name:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+.time-ago {
+  color: #888;
+  font-size: 0.85rem;
+}
+
+/* Edit Profile Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  width: 90%;
+  max-width: 400px;
+  padding: 2rem;
+  border-radius: 8px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  color: #fff;
+  text-align: center;
+}
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.auth-input {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.auth-input:focus {
+  outline: none;
+  border-color: #2cb55d;
+}
+
+.btn-secondary {
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-secondary:hover {
+  background: #444;
+}

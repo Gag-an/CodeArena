@@ -1,0 +1,139 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 200px);
+  padding: 8rem 2rem 4rem;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 3rem 2.5rem;
+  border-radius: var(--border-radius);
+}
+
+.admin-card {
+  border-color: rgba(248, 193, 40, 0.4);
+  box-shadow: 0 0 30px rgba(248, 193, 40, 0.1);
+}
+
+.admin-success {
+  text-align: center;
+  border-color: rgba(185, 251, 192, 0.4);
+  box-shadow: 0 0 30px rgba(185, 251, 192, 0.1);
+}
+
+.admin-success h2 {
+  color: var(--accent-pastel-green);
+  margin-bottom: 1rem;
+}
+
+.admin-icon {
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.auth-card h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.auth-subtitle {
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.auth-error {
+  background: rgba(255, 0, 60, 0.1);
+  border: 1px solid rgba(255, 0, 60, 0.3);
+  color: #ff5f56;
+  padding: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.form-group input {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.8rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-main);
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--accent-yellow);
+}
+
+.password-hint {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+  line-height: 1.4;
+}
+
+.auth-submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
+.admin-btn {
+  background-color: var(--text-primary);
+  color: var(--bg-color);
+}
+
+.admin-btn:hover {
+  background-color: var(--accent-yellow);
+}
+
+.auth-toggle {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  color: var(--accent-yellow);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.text-btn:hover {
+  color: var(--text-primary);
+}

@@ -1,0 +1,131 @@
+.hero {
+  padding: 10rem 2rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 90vh;
+  gap: 4rem;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.hero-title {
+  font-size: 4.5rem;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  max-width: 500px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.hero-btn {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.hero-visual {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+.code-window {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 30px rgba(248, 193, 40, 0.1);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.code-window:hover {
+  box-shadow: 0 0 40px rgba(248, 193, 40, 0.2);
+  border-color: rgba(248, 193, 40, 0.3);
+}
+
+.window-header {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.dot.red { background-color: #ff5f56; }
+.dot.yellow { background-color: #ffbd2e; }
+.dot.green { background-color: #27c93f; }
+
+.window-title {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.code-content {
+  padding: 1.5rem;
+  margin: 0;
+  font-family: var(--font-code);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #a9b7c6;
+  overflow-x: auto;
+}
+
+/* Syntax Highlighting Mock */
+.keyword { color: #cc7832; font-weight: bold; }
+.function { color: #ffc66d; }
+.class { color: #a9b7c6; }
+.comment { color: #808080; font-style: italic; }
+.number { color: #6897bb; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 8rem;
+  }
+  
+  .hero-subtitle {
+    margin: 0 auto 2.5rem;
+  }
+  
+  .hero-cta {
+    justify-content: center;
+  }
+}
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+}

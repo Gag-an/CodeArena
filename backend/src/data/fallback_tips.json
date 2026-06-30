@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Use Two Pointers",
+    "category": "DSA",
+    "difficulty": "Easy",
+    "tip": "When searching for pairs in a sorted array, use two pointers starting from opposite ends to find the answer in O(N) time.",
+    "practiceQuestion": "Two Sum II",
+    "emoji": "✌️"
+  },
+  {
+    "title": "Index Your Queries",
+    "category": "SQL",
+    "difficulty": "Medium",
+    "tip": "Always index columns that are frequently used in WHERE clauses to drastically improve the speed of your database queries.",
+    "practiceQuestion": "Combine Two Tables",
+    "emoji": "⚡"
+  },
+  {
+    "title": "Master DFS",
+    "category": "Algorithms",
+    "difficulty": "Medium",
+    "tip": "Depth-First Search (DFS) is your best friend for navigating trees and graphs. Use recursion to keep the implementation clean and simple.",
+    "practiceQuestion": "Number of Islands",
+    "emoji": "🌲"
+  }
+]

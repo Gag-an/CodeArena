@@ -12,7 +12,7 @@ export const authMiddleware = (req, res, next) => {
     const token = authHeader.split(' ')[1];
 
     // Verify the token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'codeverse_secret_key');
+    const decoded = jwt.verify(token, process.env.JWT_SECRET || 'codearena_secret_key');
     
     // Attach the user's decoded payload (like ID and Role) to the request
     req.user = decoded;

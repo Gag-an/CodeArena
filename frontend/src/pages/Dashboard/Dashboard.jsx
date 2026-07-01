@@ -10,7 +10,7 @@ import './Dashboard.css';
 const Dashboard = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useContext(AuthContext);
+  const { user, API_URL } = useContext(AuthContext);
   const [showLoader, setShowLoader] = useState(location.state?.fromLogin || false);
   
   const { socket, pendingInvites, removePendingInvite, party } = useContext(SocketContext);
@@ -117,7 +117,7 @@ const Dashboard = () => {
     
     setIsSearching(true);
     try {
-      const res = await fetch(`http://localhost:5000/api/users/search?id=${searchQuery}`, {
+      const res = await fetch(`${API_URL}/users/search?id=${searchQuery}`, {
         headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
       });
       const data = await res.json();

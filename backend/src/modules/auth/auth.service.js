@@ -68,7 +68,7 @@ export const loginUser = async (data) => {
   // Generate JWT Session Token
   const token = jwt.sign(
     { id: user.id, username: user.username, role: user.rank },
-    process.env.JWT_SECRET || 'codeverse_secret_key',
+    process.env.JWT_SECRET || 'codearena_secret_key',
     { expiresIn: '7d' } // Token lasts 1 week
   );
 

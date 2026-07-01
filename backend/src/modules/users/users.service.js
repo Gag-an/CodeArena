@@ -16,6 +16,8 @@ export const getUserProfile = async (userId) => {
       level: true,
       rank: true,
       coins: true,
+      wins: true,
+      losses: true,
       createdAt: true,
       submissions: {
         orderBy: { createdAt: 'desc' },
@@ -162,6 +164,8 @@ export const updateUserProfile = async (userId, data) => {
       level: true,
       rank: true,
       coins: true,
+      wins: true,
+      losses: true,
       createdAt: true,
       submissions: {
         orderBy: { createdAt: 'desc' },

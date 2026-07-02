@@ -6,19 +6,19 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      quote: "“I haven't had this much raw fun coding in 10 years.”",
-      author: "Philippe Beaudoin",
+      quote: "“Battling my friends in real-time coding matches is insanely fun. It doesn't even feel like learning!”",
+      author: "Alex Mercer",
       avatarIndex: 0
     },
     {
       id: 2,
-      quote: "“CodeArena completely transformed how I prepare for technical interviews.”",
+      quote: "“I climbed the leaderboard to Rank 1 and leveled up my Java skills along the way. CodeArena is brilliant.”",
       author: "Sarah Jenkins",
       avatarIndex: 4
     },
     {
       id: 3,
-      quote: "“The multiplayer battles are incredibly addictive. It's the best way to learn.”",
+      quote: "“The multiplayer battles are incredibly addictive. It's hands down the best way to practice algorithms.”",
       author: "David Chen",
       avatarIndex: 8
     }

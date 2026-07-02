@@ -1,7 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './GamificationSection.css';
 
 const GamificationSection = () => {
+  const [progress, setProgress] = useState(0);
+  const targetProgress = 84;
+
+  useEffect(() => {
+    let startTimestamp = null;
+    const duration = 1500; // 1.5 seconds
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const elapsedTime = timestamp - startTimestamp;
+      const currentProgress = Math.min(
+        Math.floor((elapsedTime / duration) * targetProgress),
+        targetProgress
+      );
+      
+      setProgress(currentProgress);
+      
+      if (elapsedTime < duration) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    
+    window.requestAnimationFrame(step);
+  }, [targetProgress]);
+
   return (
     <section className="gamification-section">
       <div className="gamification-content">
@@ -51,12 +76,14 @@ const GamificationSection = () => {
           </div>
 
           <div className="progress-section">
-            <div className="progress-labels">
+            <div className="progress-header">
               <span className="skill-name">Java learning</span>
-              <span className="skill-percentage">84%</span>
             </div>
-            <div className="progress-bar-container">
-              <div className="progress-bar-fill" style={{ width: '84%' }}></div>
+            <div className="progress-track-wrapper">
+              <div className="progress-bar-container">
+                <div className="progress-bar-fill" style={{ width: `${progress}%` }}></div>
+              </div>
+              <span className="skill-percentage">{progress}%</span>
             </div>
           </div>
         </div>

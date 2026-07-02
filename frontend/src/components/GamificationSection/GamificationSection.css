@@ -100,31 +100,46 @@
 
 .progress-section {
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
 }
 
-.progress-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  font-size: 0.95rem;
-  font-weight: 500;
+.progress-header {
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.skill-name {
+  font-size: 1.1rem;
+  font-weight: 600;
   color: var(--text-primary, #ffffff);
 }
 
+.progress-track-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .progress-bar-container {
-  width: 100%;
+  flex-grow: 1;
   height: 8px;
-  background-color: var(--surface-color-light, #333);
+  background-color: transparent;
   border-radius: 4px;
-  overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background-color: var(--accent-yellow, #f8c128);
+  background-color: #ff4d4f; /* Matches the red from the image */
   border-radius: 4px;
-  box-shadow: 0 0 10px rgba(248, 193, 40, 0.4);
+  box-shadow: 0 0 10px rgba(255, 77, 79, 0.4);
+}
+
+.skill-percentage {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary, #ffffff);
+  min-width: 40px;
+  text-align: right;
 }
 
 @media (max-width: 768px) {

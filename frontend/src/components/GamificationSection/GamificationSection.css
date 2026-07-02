@@ -42,6 +42,18 @@
   gap: 16px;
   margin-bottom: 40px;
   flex-wrap: wrap;
+  position: relative;
+}
+
+.badges-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  right: 5%;
+  height: 2px;
+  background: var(--surface-color-light, #333);
+  z-index: 0;
+  transform: translateY(-50%);
 }
 
 .badge {
@@ -52,6 +64,12 @@
   background: linear-gradient(145deg, #3a3a3a, #222222);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+.lang-text {
+  font-family: var(--font-code, 'JetBrains Mono', monospace);
+  font-weight: 700;
 }
 
 .badge:hover {

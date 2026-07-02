@@ -7,16 +7,17 @@ const GamificationSection = () => {
       <div className="gamification-content">
         <h2 className="gamification-title">Get (even) better at coding</h2>
         <p className="gamification-subtitle">
-          This gaming brings you more than just badges.<br />
-          The more you play, the more your coding improves.
+          Master multiple programming languages and frameworks.<br />
+          Level up your skills with every challenge you complete.
         </p>
 
         <div className="gamification-visual">
           <div className="badges-container">
-            <div className="badge small-badge"><span>(°_°)</span></div>
-            <div className="badge small-badge"><span>🏆</span></div>
-            <div className="badge small-badge"><span>🏊</span></div>
-            <div className="badge small-badge"><span>☕</span></div>
+            <div className="badges-line"></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#F7DF1E'}}>JS</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#3776AB'}}>Py</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#00599C'}}>C++</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#3178C6'}}>TS</span></div>
             
             <div className="badge large-badge center-badge">
               <svg viewBox="0 0 128 128" width="80" height="80">
@@ -43,10 +44,10 @@ const GamificationSection = () => {
               </svg>
             </div>
             
-            <div className="badge small-badge"><span>🔭</span></div>
-            <div className="badge small-badge"><span>⚔️</span></div>
-            <div className="badge small-badge"><span>🏢</span></div>
-            <div className="badge small-badge"><span>📄</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#00ADD8'}}>Go</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#DEA584'}}>Rs</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#CC342D'}}>Rb</span></div>
+            <div className="badge small-badge"><span className="lang-text" style={{color: '#777BB4'}}>PHP</span></div>
           </div>
 
           <div className="progress-section">

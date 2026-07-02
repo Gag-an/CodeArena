@@ -1,46 +1,63 @@
 import React, { useState, useEffect } from 'react';
 import './CareerLadder.css';
 
-const CareerLadder = () => {
-  const [players, setPlayers] = useState([
-    { id: 'p1', name: 'SteelFort', points: 245270, isMe: false },
-    { id: 'p2', name: 'MissRubis', points: 201054, isMe: false },
-    { id: 'p3', name: 'Nagrarok', points: 182099, isMe: true },
-    { id: 'p4', name: 'RaptorTwo', points: 180874, isMe: false },
-  ]);
+const initialPlayers = [
+  { id: 'p1', name: 'SteelFort', points: 245270, isMe: false },
+  { id: 'p2', name: 'MissRubis', points: 201054, isMe: false },
+  { id: 'p3', name: 'Nagrarok', points: 182099, isMe: true },
+  { id: 'p4', name: 'RaptorTwo', points: 180874, isMe: false },
+];
 
+const CareerLadder = () => {
+  const [players, setPlayers] = useState(initialPlayers);
   const [animatedPoints, setAnimatedPoints] = useState(182099);
 
   useEffect(() => {
-    // Animation Sequence
-    const timer1 = setTimeout(() => {
-      // Start animating points for 'Nagrarok'
-      let current = 182099;
-      const target = 300000;
-      const duration = 1200;
-      const stepTime = 20;
-      const steps = duration / stepTime;
-      const increment = (target - current) / steps;
+    let timeoutId;
+    let pointInterval;
 
-      const pointInterval = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-          current = target;
-          clearInterval(pointInterval);
-          
-          // Re-sort players after points updated
-          setPlayers(prev => {
-            const newPlayers = prev.map(p => 
-              p.isMe ? { ...p, points: target } : p
-            );
-            return newPlayers.sort((a, b) => b.points - a.points);
-          });
-        }
-        setAnimatedPoints(Math.floor(current));
-      }, stepTime);
-    }, 2000);
+    const runAnimation = () => {
+      // Reset state to initial before animating again
+      setPlayers(initialPlayers);
+      setAnimatedPoints(182099);
 
-    return () => clearTimeout(timer1);
+      // Start animation after a short delay
+      timeoutId = setTimeout(() => {
+        let current = 182099;
+        const target = 300000;
+        const duration = 1200;
+        const stepTime = 20;
+        const steps = duration / stepTime;
+        const increment = (target - current) / steps;
+
+        pointInterval = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(pointInterval);
+            
+            // Re-sort players after points updated
+            setPlayers(prev => {
+              const newPlayers = prev.map(p => 
+                p.isMe ? { ...p, points: target } : p
+              );
+              return newPlayers.sort((a, b) => b.points - a.points);
+            });
+
+            // Loop the animation after 4 seconds of displaying the final state
+            timeoutId = setTimeout(runAnimation, 4000);
+          }
+          setAnimatedPoints(Math.floor(current));
+        }, stepTime);
+      }, 2000);
+    };
+
+    runAnimation();
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(pointInterval);
+    };
   }, []);
 
   return (

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './CareerLadder.css';
 
 const initialPlayers = [
-  { id: 'p1', name: 'SteelFort', points: 245270, isMe: false },
-  { id: 'p2', name: 'MissRubis', points: 201054, isMe: false },
-  { id: 'p3', name: 'Nagrarok', points: 182099, isMe: true },
-  { id: 'p4', name: 'RaptorTwo', points: 180874, isMe: false },
+  { id: 'p1', name: 'CodeNinja', points: 245270, isMe: false },
+  { id: 'p2', name: 'BugSquasher', points: 201054, isMe: false },
+  { id: 'p3', name: 'You (Alex)', points: 182099, isMe: true },
+  { id: 'p4', name: 'DevMaster', points: 180874, isMe: false },
 ];
 
 const CareerLadder = () => {
@@ -73,7 +73,7 @@ const CareerLadder = () => {
           <div className="leaderboard-list">
             {players.map((player, index) => {
               const topPos = index * 70; // 60px height + 10px gap
-              const rank = 50 + index;
+              const rank = 1 + index;
               
               return (
                 <div 

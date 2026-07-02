@@ -29,7 +29,7 @@ const GamificationSection = () => {
 
   return (
     <section className="gamification-section">
-      <div className="gamification-content">
+      <div className="gamification-content glass-panel">
         <h2 className="gamification-title">Get (even) better at coding</h2>
         <p className="gamification-subtitle">
           Master multiple programming languages and frameworks.<br />

@@ -9,9 +9,11 @@
 }
 
 .gamification-content {
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
   text-align: center;
+  padding: 60px 40px;
+  border-radius: 16px;
 }
 
 .gamification-title {

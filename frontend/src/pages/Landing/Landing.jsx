@@ -9,8 +9,8 @@ const Landing = () => {
     <>
       <Hero />
       <Features />
-      <CareerLadder />
       <GamificationSection />
+      <CareerLadder />
     </>
   );
 };

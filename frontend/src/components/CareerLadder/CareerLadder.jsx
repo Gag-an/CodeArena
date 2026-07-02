@@ -45,7 +45,7 @@ const CareerLadder = () => {
 
   return (
     <section className="career-ladder-section">
-      <div className="career-ladder-content glass-panel">
+      <div className="career-ladder-content">
         <h2>Move up the (career) ladder</h2>
         <p>
           Use CodeArena to ace your next technical<br/>

@@ -3,6 +3,7 @@ import Hero from '../../components/Hero/Hero';
 import Features from '../../components/Features/Features';
 import GamificationSection from '../../components/GamificationSection/GamificationSection';
 import CareerLadder from '../../components/CareerLadder/CareerLadder';
+import Testimonials from '../../components/Testimonials/Testimonials';
 
 const Landing = () => {
   return (
@@ -11,6 +12,7 @@ const Landing = () => {
       <Features />
       <GamificationSection />
       <CareerLadder />
+      <Testimonials />
     </>
   );
 };

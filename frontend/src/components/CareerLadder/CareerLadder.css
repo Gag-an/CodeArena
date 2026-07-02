@@ -31,20 +31,20 @@
   line-height: 1.6;
 }
 
-.leaderboard-container {
+.career-ladder-section .leaderboard-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.leaderboard-list {
+.career-ladder-section .leaderboard-list {
   position: relative;
   width: 100%;
   max-width: 550px;
   height: 290px; /* 4 items * 65px + 3 * 10px gap */
 }
 
-.leaderboard-row {
+.career-ladder-section .leaderboard-row {
   position: absolute;
   left: 0;
   width: 100%;
@@ -92,14 +92,14 @@
   font-size: 1rem;
 }
 
-.leaderboard-row.is-me {
+.career-ladder-section .leaderboard-row.is-me {
   background-color: transparent;
   border: 1px solid var(--accent-yellow, #f8c128);
   box-shadow: 0 4px 15px rgba(248, 193, 40, 0.15);
   z-index: 10;
 }
 
-.leaderboard-row.is-me .player-rank {
+.career-ladder-section .leaderboard-row.is-me .player-rank {
   background-color: var(--accent-yellow, #f8c128);
   color: #000;
 }

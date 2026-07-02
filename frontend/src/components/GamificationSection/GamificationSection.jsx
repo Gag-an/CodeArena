@@ -3,7 +3,7 @@ import './GamificationSection.css';
 
 const GamificationSection = () => {
   const [progress, setProgress] = useState(0);
-  const targetProgress = 84;
+  const targetProgress = 100;
 
   useEffect(() => {
     let startTimestamp = null;

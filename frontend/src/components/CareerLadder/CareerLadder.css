@@ -1,0 +1,132 @@
+.career-ladder-section {
+  padding: 100px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  background-color: transparent;
+  font-family: var(--font-main), sans-serif;
+  color: var(--text-primary, #ffffff);
+}
+
+.career-ladder-content {
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+  padding: 60px 40px;
+  border-radius: 16px;
+  background: var(--surface-color, #1a1c22);
+}
+
+.career-ladder-content h2 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.career-ladder-content p {
+  font-size: 1.25rem;
+  color: var(--text-secondary, #a0a5b5);
+  margin-bottom: 60px;
+  line-height: 1.6;
+}
+
+.leaderboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaderboard-list {
+  position: relative;
+  width: 100%;
+  max-width: 550px;
+  height: 290px; /* 4 items * 65px + 3 * 10px gap */
+}
+
+.leaderboard-row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: top 1s cubic-bezier(0.25, 1, 0.5, 1), background-color 0.3s, box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+.row-content {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.player-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: #a0a5b5;
+  margin-right: 20px;
+}
+
+.player-name {
+  flex-grow: 1;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.player-points {
+  font-family: var(--font-main, sans-serif);
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.leaderboard-row.is-me {
+  background-color: transparent;
+  border: 1px solid var(--accent-yellow, #f8c128);
+  box-shadow: 0 4px 15px rgba(248, 193, 40, 0.15);
+  z-index: 10;
+}
+
+.leaderboard-row.is-me .player-rank {
+  background-color: var(--accent-yellow, #f8c128);
+  color: #000;
+}
+
+.arrow-icon {
+  color: var(--accent-yellow, #f8c128);
+  font-weight: bold;
+  position: absolute;
+  font-size: 1.2rem;
+}
+
+.arrow-icon.left {
+  left: -30px;
+}
+
+.arrow-icon.right {
+  right: -30px;
+}
+
+@media (max-width: 768px) {
+  .career-ladder-content h2 {
+    font-size: 2.5rem;
+  }
+  .leaderboard-list {
+    max-width: 100%;
+  }
+  .arrow-icon {
+    display: none;
+  }
+}

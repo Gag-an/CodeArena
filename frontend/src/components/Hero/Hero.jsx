@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Hero.css';
 
 const Hero = () => {
@@ -13,10 +14,9 @@ const Hero = () => {
           Enter the sanctum of developers where you can cast code snippets, solve mystical puzzles, and earn XP while mastering real-world coding.
         </p>
         <div className="hero-cta">
-          <button className="btn-primary hero-btn">
-            <span className="icon">▶</span> Start playing
-          </button>
-          <button className="btn-secondary hero-btn">View Challenges</button>
+          <Link to="/auth" className="btn-primary hero-btn" style={{ display: 'inline-flex', alignItems: 'center' }}>
+            <span className="icon" style={{ marginRight: '8px' }}>▶</span> Start playing
+          </Link>
         </div>
       </div>
       

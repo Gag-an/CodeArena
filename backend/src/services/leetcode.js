@@ -12,6 +12,10 @@ export const fetchQuestionData = async (titleSlug) => {
                 topicTags {
                     name
                 }
+                codeSnippets {
+                    langSlug
+                    code
+                }
             }
         }
     `;

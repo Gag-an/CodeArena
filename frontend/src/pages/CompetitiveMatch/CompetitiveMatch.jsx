@@ -26,10 +26,25 @@ const CompetitiveMatch = () => {
   const [chatInput, setChatInput] = useState('');
   const [activeTab, setActiveTab] = useState('chat'); // chat only now
 
+  const getSnippetForLanguage = (lang, pData = party?.problemData) => {
+    if (!pData?.codeSnippets) return DEFAULT_CODE[lang];
+    const langMap = { 'cpp': 'cpp', 'java': 'java', 'python': 'python3' };
+    const lcLang = langMap[lang] || lang;
+    const snippet = pData.codeSnippets.find(s => s.langSlug === lcLang);
+    return snippet ? snippet.code : DEFAULT_CODE[lang];
+  };
+
+  useEffect(() => {
+    if (party?.problemData) {
+      setCode(getSnippetForLanguage(language, party.problemData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [party?.problemData?.titleSlug]);
+
   const handleLanguageChange = (e) => {
     const lang = e.target.value;
     setLanguage(lang);
-    setCode(DEFAULT_CODE[lang]);
+    setCode(getSnippetForLanguage(lang));
   };
 
   const handleSolveOnLeetCode = () => {
@@ -108,7 +123,7 @@ const CompetitiveMatch = () => {
       setRoundOverlay(null);
       setTestStatus('idle');
       setTerminalOutput('You must run your code first');
-      setCode(DEFAULT_CODE[language]);
+      setCode(getSnippetForLanguage(language, problemData));
     });
 
     socket.on('verify_failed', ({ message }) => {

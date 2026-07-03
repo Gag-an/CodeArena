@@ -69,12 +69,28 @@ const FriendlyMatch = () => {
   const [isAudioMuted, setIsAudioMuted] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
 
+  const getSnippetForLanguage = (lang, pData = party?.problemData) => {
+    if (!pData?.codeSnippets) return DEFAULT_CODE[lang];
+    const langMap = { 'cpp': 'cpp', 'java': 'java', 'python': 'python3' };
+    const lcLang = langMap[lang] || lang;
+    const snippet = pData.codeSnippets.find(s => s.langSlug === lcLang);
+    return snippet ? snippet.code : DEFAULT_CODE[lang];
+  };
+
+  useEffect(() => {
+    if (party?.problemData) {
+      setCode(getSnippetForLanguage(language, party.problemData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [party?.problemData?.titleSlug]);
+
   const handleLanguageChange = (e) => {
     const lang = e.target.value;
     setLanguage(lang);
-    setCode(DEFAULT_CODE[lang]);
+    const newCode = getSnippetForLanguage(lang);
+    setCode(newCode);
     if (socket && user && party) {
-      socket.emit('code_sync', { partyId: party.leaderId, playerId: user.playerId, code: DEFAULT_CODE[lang], language: lang });
+      socket.emit('code_sync', { partyId: party.leaderId, playerId: user.playerId, code: newCode, language: lang });
     }
   };
 
@@ -164,8 +180,8 @@ const FriendlyMatch = () => {
       setRoundOverlay(null);
       setTestStatus('idle');
       setTerminalOutput('');
-      setCode(DEFAULT_CODE[language]);
-      setOpponentCode(DEFAULT_CODE[opponentLanguage]);
+      setCode(getSnippetForLanguage(language, problemData));
+      setOpponentCode(getSnippetForLanguage(opponentLanguage, problemData));
     });
 
     socket.on('verify_failed', ({ message }) => {

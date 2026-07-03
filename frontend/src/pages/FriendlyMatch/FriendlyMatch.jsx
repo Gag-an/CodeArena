@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Editor from '@monaco-editor/react';
 import { AuthContext } from '../../context/AuthContext';
@@ -9,6 +9,37 @@ const DEFAULT_CODE = {
   'cpp': 'class Solution {\npublic:\n    int numOfStrings(vector<string>& patterns, string word) {\n        \n    }\n};',
   'java': 'class Solution {\n    public int numOfStrings(String[] patterns, String word) {\n        \n    }\n}',
   'python': 'class Solution:\n    def numOfStrings(self, patterns: List[str], word: str) -> int:\n        '
+};
+
+const DraggableVideo = ({ stream, isLocal, title, defaultPos, isAudioMuted, toggleAudio, isVideoMuted, toggleVideo }) => {
+  const [pos, setPos] = useState(defaultPos);
+  const videoRef = useRef(null);
+  
+  useEffect(() => {
+    if (videoRef.current && stream) {
+      videoRef.current.srcObject = stream;
+    }
+  }, [stream]);
+
+  const handleDrag = (e) => {
+    if (e.buttons !== 1) return;
+    setPos(prev => ({ x: prev.x + e.movementX, y: prev.y + e.movementY }));
+  };
+
+  return (
+    <div className="video-chat-window" style={{ left: pos.x, top: pos.y }}>
+      <div className="video-chat-header" onMouseMove={handleDrag}>{title}</div>
+      <div className="video-chat-content">
+        <video ref={videoRef} autoPlay playsInline muted={isLocal} />
+        {isLocal && (
+           <div className="video-chat-controls">
+             <button onClick={toggleAudio} className={isAudioMuted ? 'muted' : ''}>{isAudioMuted ? '🔇' : '🎙️'}</button>
+             <button onClick={toggleVideo} className={isVideoMuted ? 'muted' : ''}>{isVideoMuted ? '🚫' : '📹'}</button>
+           </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 const FriendlyMatch = () => {
@@ -31,6 +62,12 @@ const FriendlyMatch = () => {
   const [opponentLanguage, setOpponentLanguage] = useState('cpp');
 
   const opponent = party?.members?.find(m => m.playerId !== user?.playerId);
+
+  const [localStream, setLocalStream] = useState(null);
+  const [remoteStream, setRemoteStream] = useState(null);
+  const peerConnectionRef = useRef(null);
+  const [isAudioMuted, setIsAudioMuted] = useState(false);
+  const [isVideoMuted, setIsVideoMuted] = useState(false);
 
   const handleLanguageChange = (e) => {
     const lang = e.target.value;
@@ -170,8 +207,119 @@ const FriendlyMatch = () => {
     navigate('/dashboard');
   };
 
+  // WebRTC Setup and Signaling
+  useEffect(() => {
+    if (!socket || !party || !user) return;
+    const isLeader = party.leaderId === user.playerId;
+
+    const startWebRTC = async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        setLocalStream(stream);
+
+        const pc = new RTCPeerConnection({
+          iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+        });
+        peerConnectionRef.current = pc;
+
+        stream.getTracks().forEach(track => pc.addTrack(track, stream));
+
+        pc.ontrack = (event) => {
+          setRemoteStream(event.streams[0]);
+        };
+
+        pc.onicecandidate = (event) => {
+          if (event.candidate) {
+             socket.emit('webrtc_signal', { partyId: party.leaderId, playerId: user.playerId, signal: { type: 'ice', candidate: event.candidate } });
+          }
+        };
+
+        if (isLeader) {
+          const offer = await pc.createOffer();
+          await pc.setLocalDescription(offer);
+          socket.emit('webrtc_signal', { partyId: party.leaderId, playerId: user.playerId, signal: { type: 'offer', offer } });
+        }
+      } catch (err) {
+        console.error("Failed to start WebRTC", err);
+      }
+    };
+
+    startWebRTC();
+
+    return () => {
+      if (peerConnectionRef.current) {
+         peerConnectionRef.current.close();
+      }
+      setLocalStream(prev => {
+        if(prev) prev.getTracks().forEach(t => t.stop());
+        return null;
+      });
+    };
+  }, [socket, party, user]);
+
+  useEffect(() => {
+    if (!socket || !party || !user) return;
+    
+    const handleSignal = async ({ playerId, signal }) => {
+      const pc = peerConnectionRef.current;
+      if (!pc) return;
+
+      try {
+        if (signal.type === 'offer') {
+          await pc.setRemoteDescription(new RTCSessionDescription(signal.offer));
+          const answer = await pc.createAnswer();
+          await pc.setLocalDescription(answer);
+          socket.emit('webrtc_signal', { partyId: party.leaderId, playerId: user.playerId, signal: { type: 'answer', answer } });
+        } else if (signal.type === 'answer') {
+          await pc.setRemoteDescription(new RTCSessionDescription(signal.answer));
+        } else if (signal.type === 'ice') {
+          await pc.addIceCandidate(new RTCIceCandidate(signal.candidate));
+        }
+      } catch (e) {
+        console.error('WebRTC Signaling Error:', e);
+      }
+    };
+
+    socket.on('webrtc_signal', handleSignal);
+    return () => socket.off('webrtc_signal', handleSignal);
+  }, [socket, party, user]);
+
+  const toggleAudio = () => {
+    if (localStream) {
+      localStream.getAudioTracks().forEach(t => t.enabled = !t.enabled);
+      setIsAudioMuted(!localStream.getAudioTracks()[0].enabled);
+    }
+  };
+
+  const toggleVideo = () => {
+    if (localStream) {
+      localStream.getVideoTracks().forEach(t => t.enabled = !t.enabled);
+      setIsVideoMuted(!localStream.getVideoTracks()[0].enabled);
+    }
+  };
+
   return (
     <div className="friendly-match">
+      {localStream && (
+        <DraggableVideo 
+          stream={localStream} 
+          isLocal={true} 
+          title="You" 
+          defaultPos={{ x: 20, y: window.innerHeight - 260 }} 
+          isAudioMuted={isAudioMuted}
+          isVideoMuted={isVideoMuted}
+          toggleAudio={toggleAudio}
+          toggleVideo={toggleVideo}
+        />
+      )}
+      {remoteStream && (
+        <DraggableVideo 
+          stream={remoteStream} 
+          isLocal={false} 
+          title={`${opponent ? opponent.username : 'Opponent'}`} 
+          defaultPos={{ x: window.innerWidth - 260, y: window.innerHeight - 260 }} 
+        />
+      )}
       {testStatus !== 'idle' && testStatus !== 'success' && (
         <div style={{
           position: 'fixed', top: '20px', left: '50%', transform: 'translateX(-50%)',

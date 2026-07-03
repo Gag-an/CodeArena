@@ -356,6 +356,21 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('webrtc_signal', ({ partyId, playerId, signal }) => {
+        const party = parties.get(partyId);
+        if (!party) return;
+        
+        // Broadcast signal to the other member in the party
+        party.members.forEach(member => {
+            if (member.playerId !== playerId) {
+                const memberSocketId = activePlayers.get(member.playerId);
+                if (memberSocketId) {
+                    io.to(memberSocketId).emit('webrtc_signal', { playerId, signal });
+                }
+            }
+        });
+    });
+
     socket.on('disconnect', () => {
         console.log(`🔴 Player disconnected: ${socket.id}`);
         if (socket.playerId) {

@@ -33,9 +33,16 @@ const CompetitiveMatch = () => {
   };
 
   const handleSolveOnLeetCode = () => {
-    const slug = party?.problemData?.titleSlug || party?.question?.titleSlug;
+    let slug = party?.problemData?.titleSlug || party?.question?.titleSlug;
+    if (!slug && party?.problemData?.title) {
+        // Fallback: generate slug from title
+        slug = party.problemData.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    }
+    
     if (slug) {
       window.open(`https://leetcode.com/problems/${slug}/`, '_blank');
+    } else {
+      alert("Error: Could not determine problem slug to open LeetCode.");
     }
   };
 

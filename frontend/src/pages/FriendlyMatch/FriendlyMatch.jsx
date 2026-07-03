@@ -93,8 +93,9 @@ const FriendlyMatch = () => {
   };
 
   const handleSolveOnLeetCode = () => {
-    if (party?.question?.titleSlug) {
-      window.open(`https://leetcode.com/problems/${party.question.titleSlug}/`, '_blank');
+    const slug = party?.problemData?.titleSlug || party?.question?.titleSlug;
+    if (slug) {
+      window.open(`https://leetcode.com/problems/${slug}/`, '_blank');
     }
   };
 

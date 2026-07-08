@@ -12,8 +12,7 @@ const UserAuth = () => {
     password: '',
     username: '',
     college: '',
-    leetcode_link: '',
-    hackerearth_link: ''
+    leetcode_link: ''
   });
   
   const [error, setError] = useState('');
@@ -38,7 +37,19 @@ const UserAuth = () => {
           setLoading(false);
           return;
         }
-        await register(formData);
+
+        let processedData = { ...formData };
+        if (processedData.leetcode_link) {
+          let lcInput = processedData.leetcode_link.trim();
+          const match = lcInput.match(/(?:leetcode\.com\/(?:u\/)?)([\w-]+)/i);
+          if (match && match[1]) {
+            processedData.leetcode_link = match[1];
+          } else {
+            processedData.leetcode_link = lcInput.replace(/\/+$/, '');
+          }
+        }
+        
+        await register(processedData);
       } else {
         await login(formData.email, formData.password);
       }
@@ -94,22 +105,13 @@ const UserAuth = () => {
                 />
               </div>
               <div className="form-group">
-                <label>LeetCode Username</label>
+                <label>LeetCode Profile URL</label>
                 <input 
                   type="text" 
                   value={formData.leetcode_link}
                   onChange={(e) => setFormData({...formData, leetcode_link: e.target.value})}
-                  placeholder="e.g. alexander"
+                  placeholder="https://leetcode.com/u/alexander"
                   required
-                />
-              </div>
-              <div className="form-group">
-                <label>HackerEarth Profile Link (Optional)</label>
-                <input 
-                  type="url" 
-                  value={formData.hackerearth_link}
-                  onChange={(e) => setFormData({...formData, hackerearth_link: e.target.value})}
-                  placeholder="https://hackerearth.com/@username"
                 />
               </div>
             </>

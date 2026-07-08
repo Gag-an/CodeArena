@@ -1,4 +1,4 @@
-# CodeArena (Codeverse)
+# CodeArena 
 
 CodeArena is an interactive, real-time competitive coding platform where developers can battle each other in coding challenges, earn XP, level up their rank, and track their daily coding activity.
 
